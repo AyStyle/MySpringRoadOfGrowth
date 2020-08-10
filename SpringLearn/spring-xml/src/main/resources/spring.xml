@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- Spring ioc实例化Bean对象的三种方式 -->
+    
+    <!-- 方式一：使用无参构造器（推荐） -->
+    <!--    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope=""></bean>-->
+    <!--
+        scope：定义bean的作用范围：
+            1.singleton：单例，IOC容器中只有一个该类对象。生命周期随IOC容器的销毁而销毁
+            2.prototype：原型，每次使用该类的实例对象，都返回一个新的对象，生命周期由自己控制，失去引用后会被垃圾回收器销毁
+        init-method：指定初始化方法
+        destroy-method：指定销毁方法
+     -->
+    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope="singleton" init-method="init" destroy-method="destroy"></bean>
+    
+    <!-- 另外两种是把我们自己new的对象加入到SpringIOC中进行管理 -->
+    <!-- 方式二：静态方法 -->
+    <!--    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" factory-method="getInstance"></bean>-->
+    
+    <!-- 方式三：实例方法：引用已经创建的对象，来创建另外一个对象 -->
+    <!--    <bean id="createBeanFactory" class="ankang.spring.learn.factory.CreateBeanFactory"></bean>-->
+    <!--    <bean id="connectionUtils" factory-bean="createBeanFactory" factory-method="getInstance"></bean>-->
+</beans>

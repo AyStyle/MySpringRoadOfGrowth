@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 根标签beans，里面配置一个又一个的bean子标签，每一个bean字标签代表一个类的配置 -->
+<beans>
+    <bean id="accountDao" class="ankang.spring.ankang.learn.dao.JdbcAccountDaoImpl">
+        <property name="ConnectionUtils" ref="connectionUtils"/>
+    </bean>
+    <bean id="transferService" class="ankang.spring.ankang.learn.service.TransferServiceImpl">
+        <!-- set + name 之后锁定到传值的set方法，通过反射技术可以调用该方法传入对应的值 -->
+        <property name="AccountDao" ref="accountDao"/>
+    </bean>
+    
+    
+    <bean id="connectionUtils" class="ankang.srping.ankang.learn.utils.ConnectionUtils"></bean>
+    <bean id="transactionManager" class="ankang.srping.ankang.learn.utils.TransactionManager">
+        <property name="ConnectionUtils" ref="connectionUtils"/>
+    </bean>
+    <bean id="proxyFactory" class="ankang.srping.ankang.learn.factory.ProxyFactory">
+        <property name="TransactionManager" ref="transactionManager"/>
+    </bean>
+    
+    
+</beans>
