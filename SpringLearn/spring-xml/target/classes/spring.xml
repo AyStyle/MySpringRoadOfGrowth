@@ -17,6 +17,22 @@
      -->
     <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope="singleton" init-method="init" destroy-method="destroy"></bean>
     
+    <bean id="accountDao" class="ankang.spring.learn.dao.impl.JdbcAccountDaoImpl">
+        <property name="connectionUtils" ref="connectionUtils"/>
+    </bean>
+    
+    <bean id="transferService" class="ankang.spring.learn.service.impl.TransferServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    
+    <bean id="proxyFactory" class="ankang.spring.learn.factory.ProxyFactory">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    
+    <bean id="transactionManager" class="ankang.spring.learn.utils.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"/>
+    </bean>
+    
     <!-- 另外两种是把我们自己new的对象加入到SpringIOC中进行管理 -->
     <!-- 方式二：静态方法 -->
     <!--    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" factory-method="getInstance"></bean>-->

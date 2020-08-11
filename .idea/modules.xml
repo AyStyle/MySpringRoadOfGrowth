@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CustomSpring/CustomSpring.iml" filepath="$PROJECT_DIR$/CustomSpring/CustomSpring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MySpringRoadOfGrowth.iml" filepath="$PROJECT_DIR$/MySpringRoadOfGrowth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringLearn/SpringLearn.iml" filepath="$PROJECT_DIR$/SpringLearn/SpringLearn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringLearn/spring-xml/spring-xml.iml" filepath="$PROJECT_DIR$/SpringLearn/spring-xml/spring-xml.iml" />
+    </modules>
+  </component>
+</project>

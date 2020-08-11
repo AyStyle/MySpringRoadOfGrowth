@@ -6,7 +6,7 @@
     <display-name>Archetype Created Web Application</display-name>
     
     
-<!-- 使用监听器启动Spring -->
+    <!-- 使用监听器启动Spring -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>

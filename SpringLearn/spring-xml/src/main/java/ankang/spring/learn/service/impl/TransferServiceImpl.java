@@ -22,8 +22,6 @@ public class TransferServiceImpl implements TransferService {
         this.accountDao = accountDao;
     }
 
-
-
     @Override
     public void transfer(String fromCardNo, String toCardNo, int money) throws Exception {
 
@@ -38,7 +36,7 @@ public class TransferServiceImpl implements TransferService {
             to.setMoney(to.getMoney()+money);
 
             accountDao.updateAccountByCardNo(to);
-            int c = 1/0;
+//            int c = 1/0;
             accountDao.updateAccountByCardNo(from);
 
         /*    // 提交事务

@@ -24,7 +24,6 @@ public class TransferServiceImpl implements TransferService {
 
 
 
-    @Override
     public void transfer(String fromCardNo, String toCardNo, int money) throws Exception {
 
         /*try{
