@@ -10,8 +10,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CustomSpring" target="1.5" />
-      <module name="MySpringRoadOfGrowth" target="1.5" />
+      <module name="CustomSpring" target="1.8" />
+      <module name="MySpringRoadOfGrowth" target="1.8" />
       <module name="spring-xml" target="11" />
       <module name="SpringLearn" target="11" />
     </bytecodeTargetLevel>

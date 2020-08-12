@@ -4,23 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
     
-    <!-- Spring ioc实例化Bean对象的三种方式 -->
-    
-    <!-- 方式一：使用无参构造器（推荐） -->
-    <!--    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope=""></bean>-->
-    <!--
-        scope：定义bean的作用范围：
-            1.singleton：单例，IOC容器中只有一个该类对象。生命周期随IOC容器的销毁而销毁
-            2.prototype：原型，每次使用该类的实例对象，都返回一个新的对象，生命周期由自己控制，失去引用后会被垃圾回收器销毁
-        init-method：指定初始化方法
-        destroy-method：指定销毁方法
-     -->
-    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope="singleton" init-method="init" destroy-method="destroy"></bean>
-    
-    <bean id="accountDao" class="ankang.spring.learn.dao.impl.JdbcAccountDaoImpl">
-        <property name="connectionUtils" ref="connectionUtils"/>
-    </bean>
-    
     <bean id="transferService" class="ankang.spring.learn.service.impl.TransferServiceImpl">
         <property name="accountDao" ref="accountDao"/>
     </bean>
@@ -33,11 +16,105 @@
         <property name="connectionUtils" ref="connectionUtils"/>
     </bean>
     
+    <!-- Spring ioc实例化Bean对象的三种方式 -->
+    
+    <!-- 方式一：使用无参构造器（推荐） -->
+    <!--    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils"></bean>-->
+    <!--
+        scope：定义bean的作用范围
+            1.singleton：单例，IOC容器中只有一个该类对象。生命周期随IOC容器的销毁而销毁
+            2.prototype：原型，每次使用该类的实例对象，都返回一个新的对象，生命周期由自己控制，失去引用后会被垃圾回收器销毁
+        init-method：指定初始化方法
+        destroy-method：指定销毁方法
+     -->
+    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope="singleton" init-method="init" destroy-method="destroy"></bean>
+    
     <!-- 另外两种是把我们自己new的对象加入到SpringIOC中进行管理 -->
-    <!-- 方式二：静态方法 -->
+    <!--
+        方式二：静态方法创建对象
+        factory-method：指定类的静态方法
+     -->
     <!--    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" factory-method="getInstance"></bean>-->
     
-    <!-- 方式三：实例方法：引用已经创建的对象，来创建另外一个对象 -->
+    <!--
+        方式三：实例方法，引用已经创建的对象，来创建另外一个对象
+        factory-bean：指定实例对象
+        factory-method：指定实例对象的方法创建对象
+     -->
     <!--    <bean id="createBeanFactory" class="ankang.spring.learn.factory.CreateBeanFactory"></bean>-->
     <!--    <bean id="connectionUtils" factory-bean="createBeanFactory" factory-method="getInstance"></bean>-->
+    
+    <!-- Spring set注入 -->
+    <bean id="accountDao" class="ankang.spring.learn.dao.impl.JdbcAccountDaoImpl">
+        <!--
+            set注入使用property标签：
+                1.注入bean对象，使用ref属性
+                2.注入普通值，使用value属性
+        -->
+        <property name="connectionUtils" ref="connectionUtils"/>
+        <property name="name" value="ankang"/>
+        <property name="age" value="18"/>
+        
+        <!--
+            set注入复杂类型数据：
+                1.array：注入数组对象
+                2.map：注入map对象
+                2.set：注入set对象
+                2.list：注入list对象
+                2.props：注入property对象
+        -->
+        <property name="strings">
+            <array>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </array>
+        </property>
+        
+        <property name="stringMap">
+            <map>
+                <entry key="key1" value="value1"/>
+                <entry key="key2" value="value2"/>
+            </map>
+        </property>
+        
+        <property name="stringSet">
+            <set>
+                <value>set1</value>
+                <value>set1</value>
+                <value>set2</value>
+            </set>
+        </property>
+        
+        <property name="stringList">
+            <list>
+                <value>list1</value>
+                <value>list2</value>
+                <value>list3</value>
+            </list>
+        </property>
+        
+        <property name="stringProperties">
+            <props>
+                <prop key="pro1">value1</prop>
+                <prop key="pro2">value2</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- Spring 构造器注入 -->
+    <!--    <bean id="accountDao" class="ankang.spring.learn.dao.impl.JdbcAccountDaoImpl">-->
+    <!--        &lt;!&ndash;-->
+    <!--            构造器注入使用constructor-arg标签：-->
+    <!--                1.注入bean对象，使用ref属性-->
+    <!--                2.注入普通值，使用value属性-->
+    <!--                3.index设置构造器参数位置（不推荐）-->
+    <!--                4.name对应构造器参数名称（推荐）-->
+    <!--        &ndash;&gt;-->
+    <!--        <constructor-arg name="name" value="ankang"/>-->
+    <!--        <constructor-arg name="connectionUtils" ref="connectionUtils"/>-->
+    <!--        <constructor-arg name="age" value="18"/>-->
+    <!--    </bean>-->
+
+
 </beans>
