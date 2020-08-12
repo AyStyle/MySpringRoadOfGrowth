@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/MySpringRoadOfGrowth.iml" filepath="$PROJECT_DIR$/MySpringRoadOfGrowth.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringLearn/SpringLearn.iml" filepath="$PROJECT_DIR$/SpringLearn/SpringLearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringLearn/spring-xml/spring-xml.iml" filepath="$PROJECT_DIR$/SpringLearn/spring-xml/spring-xml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringLearn/spring-xml-annotation/spring-xml-annotation.iml" filepath="$PROJECT_DIR$/SpringLearn/spring-xml-annotation/spring-xml-annotation.iml" />
     </modules>
   </component>
 </project>

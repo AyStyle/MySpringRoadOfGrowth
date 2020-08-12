@@ -13,42 +13,72 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-xml</module>
+        <module>spring-xml-annotation</module>
     </modules>
     
     <properties>
         <spring.version>5.1.17.RELEASE</spring.version>
-        <servlet.version>4.0.1</servlet.version>
     </properties>
     
-    <dependencyManagement>
-        <dependencies>
-            <!-- 引入Spring IOC容器功能 -->
-            <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+    
+    <dependencies>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-            
+        
             <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-    
-            <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        
+            <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+            </dependency>
+        
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+            </dependency>
+        
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+            </dependency>
+        
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+            </dependency>
+        
+            <dependency>
+                <groupId>org.mariadb.jdbc</groupId>
+                <artifactId>mariadb-java-client</artifactId>
+            </dependency>
+        
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+            </dependency>
+        
+            <dependency>
+                <groupId>org.dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+            </dependency>
+        
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>${servlet.version}</version>
-                <scope>provided</scope>
             </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-    
-    <dependencies>
+        
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+<!--
+    Spring xml + 注解开发：
+        xml：用在第三方开发的jar包上
+        注解：用在自己项目开发的代码上
+-->
+    <bean id="dataSource" class=""
+    
+    <bean id="connectionUtils" class="ankang.spring.learn.utils.ConnectionUtils" scope="singleton" init-method="init" destroy-method="destroy"></bean>
+    
+    <bean id="accountDao" class="ankang.spring.learn.dao.impl.JdbcAccountDaoImpl">
+        <property name="connectionUtils" ref="connectionUtils"/>
+    </bean>
+    
+    <bean id="transferService" class="ankang.spring.learn.service.impl.TransferServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    
+    <bean id="proxyFactory" class="ankang.spring.learn.factory.ProxyFactory">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    
+    <bean id="transactionManager" class="ankang.spring.learn.utils.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"/>
+    </bean>
+
+</beans>

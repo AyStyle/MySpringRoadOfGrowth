@@ -78,3 +78,4 @@
        BeanFactory（基础容器）是Spring框架IOC容器的顶级接口，定义了容器的一些基础功能和一些基础规范
        ApplicationContext（高级容器）是BeanFactory的子接口，除了BeanFactory功能外还添加了新的功能
 
+#
