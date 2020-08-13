@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="spring-annotation.war">
+    <root id="archive" name="spring-annotation-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="spring-annotation:war exploded" />
     </root>
   </artifact>
