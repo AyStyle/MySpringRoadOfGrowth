@@ -62,7 +62,8 @@
           【面】：横切逻辑代码往往要影响的是很多个方法，每一个方法都如同一个点，多个点构成面
  
 ##### Spring开发
-   1. spring-xml：纯xml开发     
+   1. spring-xml：纯xml开发
+   2. spring-xml-annotation：xml + 注解开发
    2. spring-xml-annotation：xml + 注解开发
    3. spring-annotation：纯注解开发
    
@@ -77,5 +78,3 @@
       
        BeanFactory（基础容器）是Spring框架IOC容器的顶级接口，定义了容器的一些基础功能和一些基础规范
        ApplicationContext（高级容器）是BeanFactory的子接口，除了BeanFactory功能外还添加了新的功能
-
-#

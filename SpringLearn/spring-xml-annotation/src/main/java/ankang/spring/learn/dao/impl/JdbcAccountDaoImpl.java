@@ -3,6 +3,9 @@ package ankang.spring.learn.dao.impl;
 import ankang.spring.learn.dao.AccountDao;
 import ankang.spring.learn.pojo.Account;
 import ankang.spring.learn.utils.ConnectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,13 +18,11 @@ import java.util.Set;
 /**
  * @author 应癫
  */
+@Repository("accountDao")
 public class JdbcAccountDaoImpl implements AccountDao {
 
+    @Autowired
     private ConnectionUtils connectionUtils;
-
-    public void setConnectionUtils(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
-    }
 
     @Override
     public Account queryAccountByCardNo(String cardNo) throws Exception {
