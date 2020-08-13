@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-xml" />
+        <module name="spring-annotation" />
         <module name="spring-xml-annotation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CustomSpring" target="1.8" />
       <module name="MySpringRoadOfGrowth" target="1.8" />
+      <module name="spring-annotation" target="11" />
       <module name="spring-xml" target="11" />
       <module name="spring-xml-annotation" target="11" />
       <module name="SpringLearn" target="11" />
