@@ -86,3 +86,7 @@
    1. BeanFactory：BeanFactory是容器的顶级接口，定义了容器的一些基础行为，负责生产和管理Bean的一个工厂，具体使用它下面的子接口类型：ApplicationContext
    2. FactoryBean：Spring中Bean有两种：一种是普通Bean，一种是工厂Bean（FactoryBean），FactoryBean可以生成某一个类型的Bean实例，我们可以借助于FactoryBean自定义Bean的创建过程
 3. 后置处理器：
+   1. BeanPostProcessor：Bean对象的后置处理器，在Bean对象实例化之后进行一些后置处理（并不是整个Spring Bean的生命周期完成）
+   2. BeanFactoryPostProcessor：BeanFactory对象的后置处理器，在BeanFactory初始化之后可以进行一些后置处理
+   + 对象不一定是SpringBean，而SpringBean一定是个对象
+
