@@ -3,6 +3,11 @@ package ankang.spring.learn.pojo;
 /**
  * @author 应癫
  */
+
+import org.springframework.context.annotation.Lazy;
+
+//@Lazy：注解开启对象延迟加载
+//@Lazy
 public class Result {
 
     private String status;

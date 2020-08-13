@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<!-- 配置全部对象延迟加载：default-lazy-init="true" -->
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -57,5 +58,12 @@
     <!--    <bean id="transactionManager" class="ankang.spring.learn.utils.TransactionManager">-->
     <!--        <property name="connectionUtils" ref="connectionUtils"/>-->
     <!--    </bean>-->
+    
+    <!--
+        lazy-init方法配置bean对象的延迟加载，true延迟加载，false立即加载，默认：false
+        @Lazy：注解开启对象延迟加载
+    -->
+    
+    <bean id="lazyResult" class="ankang.spring.learn.pojo.Result" lazy-init="true"/>
 
 </beans>

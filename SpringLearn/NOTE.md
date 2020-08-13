@@ -63,8 +63,7 @@
  
 ##### Spring开发
    1. spring-xml：纯xml开发
-   2. spring-xml-annotation：xml + 注解开发
-   2. spring-xml-annotation：xml + 注解开发
+   2. spring-xml-annotation（常用）：xml + 注解开发
    3. spring-annotation：纯注解开发
    
 ##### Spring加载方式
@@ -74,7 +73,16 @@
 4. 使用监听器加载（适用于JavaWeb项目）：ContextLoaderListener
 
 ##### Spring IOC基础
-1. BeanFactory和ApplicationContext区别
-      
-       BeanFactory（基础容器）是Spring框架IOC容器的顶级接口，定义了容器的一些基础功能和一些基础规范
-       ApplicationContext（高级容器）是BeanFactory的子接口，除了BeanFactory功能外还添加了新的功能
+    BeanFactory和ApplicationContext区别
+    BeanFactory（基础容器）是Spring框架IOC容器的顶级接口，定义了容器的一些基础功能和一些基础规范
+    ApplicationContext（高级容器）是BeanFactory的子接口，除了BeanFactory功能外还添加了新的功能
+
+##### Spring IOC高级特性
+1. lazy-init：延迟加载
+   1. bean对象延迟加载-xml：\<bean id="bean" class="Bean" lazy-init="true"/>
+   2. bean对象延迟加载-注解：@Lazy
+   3. 所有bean对象延迟加载：配置文件开头使用default-lazy-init属性 -> \<beans default-lazy-init="true">
+2. FactoryBean和BeanFactory：
+   1. BeanFactory：BeanFactory是容器的顶级接口，定义了容器的一些基础行为，负责生产和管理Bean的一个工厂，具体使用它下面的子接口类型：ApplicationContext
+   2. FactoryBean：Spring中Bean有两种：一种是普通Bean，一种是工厂Bean（FactoryBean），FactoryBean可以生成某一个类型的Bean实例，我们可以借助于FactoryBean自定义Bean的创建过程
+3. 后置处理器：
