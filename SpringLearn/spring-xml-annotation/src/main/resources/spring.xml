@@ -30,6 +30,16 @@
     </bean>
     
     <!--
+        FactoryBean Demo
+        获取Bean对象直接使用id属性
+        获取FactoryBean对象在id属性前加上&：&id
+    -->
+    <bean id="companyBean" class="ankang.spring.learn.factory.CompanyFactoryBean">
+        <property name="companyInfo" value="大公司,地球"/>
+    </bean>
+    
+    
+    <!--
         使用注解声明bean实例对象
             1.@Component：表示此类为实例对象
             2.@Controller：表示控制层实例对象
