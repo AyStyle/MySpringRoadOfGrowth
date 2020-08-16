@@ -91,7 +91,7 @@ public class Result implements BeanNameAware, BeanFactoryAware, ApplicationConte
 
     /**
      * 6. 如果 BeanPostProcessor 和 Bean 关联，则 Spring 将调用该接口的预初始化方法postProcessBeforeInitialzation() 对 Bean 进⾏加⼯操作，此处非常重要，javax.swing.Spring 的 AOP 就是利用它实现的。
-     * 备注：参考MyBeanPostProcessor
+     * 备注：参考{@link ankang.spring.learn.pojo.MyBeanPostProcessor}
      */
 
     // 插曲：注解指定的初始化方法优先于InitializingBean接口的销毁方法
@@ -119,7 +119,7 @@ public class Result implements BeanNameAware, BeanFactoryAware, ApplicationConte
 
     /**
      * 9. 如果 BeanPostProcessor 和 Bean 关联，则 Spring 将调用该接口的初始化方法 postProcessAfterInitialization()。此时，Bean 已经可以被应用系统使用了。
-     * 备注：参考MyBeanPostProcessor
+     * 备注：参考{@link ankang.spring.learn.pojo.MyBeanPostProcessor}
      * <p>
      * 10. 如果在 <bean> 中指定了该 Bean 的作用范围为 scope="singleton"，则将该 Bean 放⼊ Spring IoC 的缓存池中，将触发 Spring 对该 Bean 的⽣命周期管理；如果在 <bean> 中指定了该 Bean 的作用范围为 scope="prototype"，则将该 Bean 交给调用者，调用者管理该Bean的生命周期
      */
