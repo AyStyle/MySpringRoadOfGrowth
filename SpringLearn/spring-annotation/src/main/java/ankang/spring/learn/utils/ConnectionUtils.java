@@ -1,8 +1,11 @@
 package ankang.spring.learn.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,6 +14,8 @@ import java.sql.SQLException;
  * @author 应癫
  */
 @Component
+// 指定对象是否为单例
+@Scope("singleton")
 public class ConnectionUtils {
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>(); // 存储当前线程的连接
@@ -33,6 +38,18 @@ public class ConnectionUtils {
             threadLocal.set(connection);
         }
         return connection;
-
     }
+
+    // 指定初始化方法，该注解在javax-annotation下
+    @PostConstruct
+    public void initMethod(){
+        System.out.println("配置的初始化方法");
+    }
+
+    // 指定销毁方法，使用注解在javax-annotation下
+    @PreDestroy
+    public void destroy(){
+        System.out.println("配置销毁方法");
+    }
+
 }

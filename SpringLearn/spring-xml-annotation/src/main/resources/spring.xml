@@ -73,7 +73,6 @@
         lazy-init方法配置bean对象的延迟加载，true延迟加载，false立即加载，默认：false
         @Lazy：注解开启对象延迟加载
     -->
-    
-    <bean id="lazyResult" class="ankang.spring.learn.pojo.Result" lazy-init="true"/>
+    <bean id="lazyResult" class="ankang.spring.learn.pojo.Result" lazy-init="true" init-method="initMethod"/>
 
 </beans>
