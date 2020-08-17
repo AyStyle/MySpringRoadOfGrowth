@@ -4,6 +4,7 @@ import ankang.spring.learn.dao.AccountDao;
 import ankang.spring.learn.pojo.Account;
 import ankang.spring.learn.utils.ConnectionUtils;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import java.util.Set;
 public class JdbcAccountDaoImpl implements AccountDao {
 
     private ConnectionUtils connectionUtils;
+    private DataSource dataSource;
 
     private String name ;
     private int age;
@@ -39,6 +41,10 @@ public class JdbcAccountDaoImpl implements AccountDao {
 
     public void setConnectionUtils(ConnectionUtils connectionUtils) {
         this.connectionUtils = connectionUtils;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     public void setStrings(String[] strings) {
@@ -107,7 +113,9 @@ public class JdbcAccountDaoImpl implements AccountDao {
         // 从连接池获取连接
         // 改造为：从当前线程当中获取绑定的connection连接
         //Connection con = DruidUtils.getInstance().getConnection();
-        Connection con = connectionUtils.getCurrentThreadConn();
+//        Connection con = connectionUtils.getCurrentThreadConn();
+        Connection con = dataSource.getConnection();
+
         String sql = "update db_spring.account set money=? where cardNo=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setInt(1,account.getMoney());
