@@ -2,12 +2,15 @@
 <!-- 配置全部对象延迟加载：default-lazy-init="true" -->
 <beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            https://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            https://www.springframework.org/schema/context/spring-context.xsd
+             http://www.springframework.org/schema/aop
+           https://www.springframework.org/schema/aop/spring-aop.xsd
 ">
     
     <!-- 配置开启注解扫描，base-package指定扫描的包路径 -->
@@ -74,5 +77,63 @@
         @Lazy：注解开启对象延迟加载
     -->
     <bean id="lazyResult" class="ankang.spring.learn.pojo.Result" lazy-init="true" init-method="initMethod"/>
+    
+    <!--
+        进行AOP相关的xml + 注解配置
+        配置AOP的过程就是把AOP相关术语落地
+        
+        @EnableAspectJAutoProxy：启动AOP配置（纯注解模式使用）
+        
+        @Aspect：表明此类为切面类
+        @Pointcut：表明该方法是切入点
+        @Before：切入点方法之前触发
+        @After：切入点之后触发，无论是否异常
+        @AfterThrowing：切入点执行异常时触发，切入点正常执行完毕之后不会触发
+        @AfterReturning：切入点正常执行完毕之后触发，如果执行过程发生了异常，则：触发@AfterThrowing或抛出异常
+        @Around：环绕增强，可以控制原有的业务逻辑是否执行且能实现其他标签的功能
+     -->
+    
+    <!-- 横切逻辑bean -->
+    <!--    <bean id="logUtils" class="ankang.spring.learn.utils.LogUtils"></bean>-->
+    
+    <!--    &lt;!&ndash; 使用config标签，表明开始aop配置，在内部配置切面aspect &ndash;&gt;-->
+    <!--    <aop:config>-->
+    <!--        &lt;!&ndash; 配置切面aspect &ndash;&gt;-->
+    <!--        <aop:aspect id="logAspect" ref="logUtils">-->
+    <!--            &lt;!&ndash;-->
+    <!--                配置切入点，锁定感兴趣的方法，使用aspectj语法表达式-->
+    <!--                切入点标签：-->
+    <!--                    pointcut：配置切入点-->
+    <!--                        属性：-->
+    <!--                            id：切入点id配置-->
+    <!--                            expression：切入点的aspectj表达式-->
+    <!--            &ndash;&gt;-->
+    <!--            <aop:pointcut id="pt1" expression="execution(public void ankang.spring.learn.service.TransferService.transfer(String,String,int))"/>-->
+    <!--            -->
+    <!--            &lt;!&ndash;-->
+    <!--                方位信息：织入切入点-->
+    <!--                方位标签：-->
+    <!--                    before：切入点方法之前触发-->
+    <!--                    after：切入点之后触发，无论是否异常-->
+    <!--                    after-return：切入点正常执行完毕之后触发，如果执行过程发生了异常，则：触发after-throwing或抛出异常-->
+    <!--                    after-throwing：切入点执行异常时触发，切入点正常执行完毕之后不会触发-->
+    <!--                    round：环绕增强，可以控制原有的业务逻辑是否执行且能实现其他标签的功能-->
+    <!--                    declare-parents：-->
+    <!--                方位标签属性：-->
+    <!--                    method：-->
+    <!--                    pointcut-ref：-->
+    <!--                    pointcut：-->
+    <!--                    arg-names：-->
+    <!--             &ndash;&gt;-->
+    <!--            <aop:before method="beforeMethod" pointcut-ref="pt1"/>-->
+    <!--            <aop:after method="afterMethod" pointcut="execution(public void ankang.spring.learn.service.TransferService.transfer(String,String,int)))"/>-->
+    <!--        </aop:aspect>-->
+    <!--    </aop:config>-->
+    
+    <!--
+        开启aop注解驱动
+        proxy-target-class：true强制使用cglib动态代理
+     -->
+    <aop:aspectj-autoproxy/>
 
 </beans>
