@@ -18,6 +18,8 @@ import javax.sql.DataSource;
 // @PropertySource：引入外部资源文件
 @PropertySource("classpath:druid.properties")
 // @Import：引入其它Spring配置文件，统一使用该类导入
+// @EnableAspectJAutoProxy：启动AOP配置
+@EnableAspectJAutoProxy
 public class SpringConfig {
 
     // @Value：引入外部资源文件配置的变量
