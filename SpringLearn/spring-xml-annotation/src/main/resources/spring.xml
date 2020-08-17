@@ -3,14 +3,17 @@
 <beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            https://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            https://www.springframework.org/schema/context/spring-context.xsd
-             http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop
            https://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx
+           https://www.springframework.org/schema/tx/spring-tx.xsd
 ">
     
     <!-- 配置开启注解扫描，base-package指定扫描的包路径 -->
@@ -135,5 +138,45 @@
         proxy-target-class：true强制使用cglib动态代理
      -->
     <aop:aspectj-autoproxy/>
+    
+    <!--
+    声明式事务配置
+-->
+    <!-- 事务控制横切逻辑bean -->
+    <bean id="transaction" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <!--
+        定义事务
+        @Transactional：表示该类或该方法需要事务管理
+     -->
+<!--    <tx:advice id="txAdvice" transaction-manager="transaction">-->
+<!--        &lt;!&ndash; 定义事务细节、隔离级别、传播行为 &ndash;&gt;-->
+<!--        <tx:attributes>-->
+<!--            &lt;!&ndash;-->
+<!--                对占比率高的方法进行配置：-->
+<!--                    name：方法名称-->
+<!--                    read-only：是否只读-->
+<!--                    propagation：事务的传播行为-->
+<!--                    isolation：事务的隔离级别-->
+<!--                    rollback-for：回滚配置-->
+<!--                    no-rollback-for：不回滚配置-->
+<!--                    timeout：设置超时时间，单位秒，-1代表没有超时时间-->
+<!--             &ndash;&gt;-->
+<!--            -->
+<!--            &lt;!&ndash; 一般性配置 &ndash;&gt;-->
+<!--            <tx:method name="*" read-only="false" propagation="REQUIRED" isolation="DEFAULT"/>-->
+<!--            &lt;!&ndash; 针对查询的特殊配置，会覆盖一般性配置 &ndash;&gt;-->
+<!--            <tx:method name="query*" read-only="true" propagation="SUPPORTS" isolation="DEFAULT"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+<!--    -->
+<!--    <aop:config>-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut="execution(public void ankang.spring.learn.service.TransferService.*(..)))"/>-->
+<!--    </aop:config>-->
+
+    <!-- 声明式事务注解驱动 -->
+    <tx:annotation-driven transaction-manager="transaction"/>
 
 </beans>
