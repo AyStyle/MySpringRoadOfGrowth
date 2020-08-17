@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+               http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+">
     
     <bean id="transferService" class="ankang.spring.learn.service.impl.TransferServiceImpl">
         <property name="accountDao" ref="accountDao"/>
@@ -115,6 +119,47 @@
     <!--        <constructor-arg name="connectionUtils" ref="connectionUtils"/>-->
     <!--        <constructor-arg name="age" value="18"/>-->
     <!--    </bean>-->
-
+    
+    <!--
+        进行AOP相关的xml配置
+        配置AOP的过程就是把AOP相关术语落地
+     -->
+    
+    <!-- 横切逻辑bean -->
+    <bean id="logUtils" class="ankang.spring.learn.utils.LogUtils"></bean>
+    
+    <!-- 使用config标签，表明开始aop配置，在内部配置切面aspect -->
+    <aop:config>
+        <!-- 配置切面aspect -->
+        <aop:aspect id="logAspect" ref="logUtils">
+            <!--
+                配置切入点，锁定感兴趣的方法，使用aspectj语法表达式
+                切入点标签：
+                    pointcut：配置切入点
+                        属性：
+                            id：切入点id配置
+                            expression：切入点的aspectj表达式
+            -->
+            <aop:pointcut id="pt1" expression="execution(public void ankang.spring.learn.service.TransferService.transfer(String,String,int))"/>
+            
+            <!--
+                方位信息：织入切入点
+                方位标签：
+                    before：切入点方法之前触发
+                    after：切入点之后触发，无论是否异常
+                    after-return：切入点正常执行完毕之后触发，如果执行过程发生了异常，则：触发after-throwing或抛出异常
+                    after-throwing：切入点执行异常时触发，切入点正常执行完毕之后不会触发
+                    round：环绕增强，可以控制原有的业务逻辑是否执行且能实现其他标签的功能
+                    declare-parents：
+                方位标签属性：
+                    method：
+                    pointcut-ref：
+                    pointcut：
+                    arg-names：
+             -->
+            <aop:before method="beforeMethod" pointcut-ref="pt1"/>
+            <aop:after method="afterMethod" pointcut="execution(public void ankang.spring.learn.service.TransferService.transfer(String,String,int)))"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
