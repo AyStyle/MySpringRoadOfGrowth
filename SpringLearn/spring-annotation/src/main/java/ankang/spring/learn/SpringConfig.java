@@ -3,6 +3,7 @@ package ankang.spring.learn;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -20,6 +21,8 @@ import javax.sql.DataSource;
 // @Import：引入其它Spring配置文件，统一使用该类导入
 // @EnableAspectJAutoProxy：启动AOP配置
 @EnableAspectJAutoProxy
+// @EnableTransactionManagement：启动声明式事务配置
+@EnableTransactionManagement
 public class SpringConfig {
 
     // @Value：引入外部资源文件配置的变量
