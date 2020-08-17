@@ -22,6 +22,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.1.17.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.17.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.6" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.1.17.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.1.17.RELEASE" />
           <element id="library" level="project" name="Maven: cglib:cglib:3.3.0" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:7.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.2" />
