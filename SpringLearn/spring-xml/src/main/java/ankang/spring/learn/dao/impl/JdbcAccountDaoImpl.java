@@ -21,12 +21,12 @@ public class JdbcAccountDaoImpl implements AccountDao {
     private ConnectionUtils connectionUtils;
     private DataSource dataSource;
 
-    private String name ;
+    private String name;
     private int age;
 
     private String[] strings;
     private List<String> stringList;
-    private Map<String,String> stringMap;
+    private Map<String, String> stringMap;
     private Set<String> stringSet;
     private Properties stringProperties;
 
@@ -87,14 +87,15 @@ public class JdbcAccountDaoImpl implements AccountDao {
     public Account queryAccountByCardNo(String cardNo) throws Exception {
         //从连接池获取连接
         // Connection con = DruidUtils.getInstance().getConnection();
-        Connection con = connectionUtils.getCurrentThreadConn();
+        // Connection con = connectionUtils.getCurrentThreadConn();
+        Connection con = dataSource.getConnection();
         String sql = "select * from db_spring.account where cardNo=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
-        preparedStatement.setString(1,cardNo);
+        preparedStatement.setString(1 , cardNo);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         Account account = new Account();
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             account.setCardNo(resultSet.getString("cardNo"));
             account.setName(resultSet.getString("name"));
             account.setMoney(resultSet.getInt("money"));
@@ -118,8 +119,8 @@ public class JdbcAccountDaoImpl implements AccountDao {
 
         String sql = "update db_spring.account set money=? where cardNo=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
-        preparedStatement.setInt(1,account.getMoney());
-        preparedStatement.setString(2,account.getCardNo());
+        preparedStatement.setInt(1 , account.getMoney());
+        preparedStatement.setString(2 , account.getCardNo());
         int i = preparedStatement.executeUpdate();
 
         preparedStatement.close();
